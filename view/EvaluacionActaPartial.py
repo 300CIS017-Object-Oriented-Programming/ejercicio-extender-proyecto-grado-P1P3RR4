@@ -10,7 +10,7 @@ from controller.ControladorPDF import ControladorPdf
 def agregar_acta(st, controlador):
     st.title("Generación De Actas")
     col1, col2, col3 = st.columns(3)
-    col5, col6, col7, col8 = st.columns(4)
+    col5, col6, col7, col8, col9 = st.columns(5)
     # Objeto que modelará el formulario
     info_acta_obj = InfoActa(controlador.criterios)
     info_acta_obj.fecha_acta = datetime.today().strftime('%Y-%m-%d')
@@ -26,8 +26,12 @@ def agregar_acta(st, controlador):
         info_acta_obj.codirector = st.text_input("Codirector", "N.A")
     with col7:
         info_acta_obj.jurado1 = st.text_input("Jurado #1")
+        info_acta_obj.jurado1_estado = st.checkbox("Externo", key="1")
     with col8:
         info_acta_obj.jurado2 = st.text_input("Jurado #2")
+        info_acta_obj.jurado2_estado = st.checkbox("Externo", key="2")
+    with col9:
+        info_acta_obj.fecha_presentacion = st.text_input("Fecha de presentacion")
     enviado_btn = st.button("Enviar")
 
     # Cuando se oprime el botón se agrega a la lista
@@ -56,7 +60,7 @@ def ver_historico_acta(st, controlador):
         numero += 1
         col1, col2, col3, col4 = st.columns(4)
         col5, col6, col7, col8 = st.columns(4)
-        col9, col10 = st.columns(2)
+        col9, col10, col11 = st.columns(3)
         with col1:
             st.write("**Autor**")
             st.write(acta.autor)
@@ -70,18 +74,21 @@ def ver_historico_acta(st, controlador):
             st.write("**Fecha De Creación**")
             st.write(acta.fecha_acta)
         with col5:
+            st.write("**Fecha de presentacion**")
+            st.write(acta.fecha_presentacion)
+        with col6:
             st.write("**Director**")
             st.write(acta.director)
-        with col6:
+        with col7:
             st.write("**Codirector**")
             st.write(acta.codirector)
-        with col7:
+        with col8:
             st.write("**Jurado #1**")
             st.write(acta.jurado1)
-        with col8:
+        with col9:
             st.write("**Jurado #2**")
             st.write(acta.jurado2)
-        with col9:
+        with col10:
             st.write("**Nota Final**")
             if not acta.estado:
                 st.write("Sin nota")
@@ -89,7 +96,7 @@ def ver_historico_acta(st, controlador):
                 st.write(acta.nota_final, "Acta Aprobada")
             else:
                 st.write(acta.nota_final, "Acta Reprobada")
-        with col10:
+        with col11:
             st.write("**Estado**")
             if not acta.estado:
                 st.write("Acta pendiente por calificar")
