@@ -13,13 +13,16 @@ class InfoActa:
 
         # Datos del acta
         self.autor = ""
+        self.fecha_presentacion = ""
         self.fecha_acta = ""
         self.nombre_trabajo = ""
         self.tipo_trabajo = ""
         self.director = ""
         self.codirector = " "
         self.jurado1 = ""
+        self.jurado1_estado = False
         self.jurado2 = ""
+        self.jurado2_estado = False
         self.nota_final = 0.0
         self.criterios = criterios
         self.estado = False
