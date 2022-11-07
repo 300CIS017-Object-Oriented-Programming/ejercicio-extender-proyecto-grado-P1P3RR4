@@ -26,5 +26,3 @@ class InfoActa:
         self.nota_final = 0.0
         self.criterios = criterios
         self.estado = False
-        self.restriccion = 0.0
-        self.observacion_ad = ""
