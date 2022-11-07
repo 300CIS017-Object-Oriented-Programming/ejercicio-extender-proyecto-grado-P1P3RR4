@@ -16,6 +16,7 @@ class ControladorPdf:
         :param acta_seleccionada:
         :return:
         """
+        global criterio
         numero = 1
         flag = False
         self.pdf.add_page()
